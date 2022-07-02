@@ -6,6 +6,6 @@ export const fetchPosts = () => {
   // Below, the function can have 2 params, (dispatch, getState) but we don't need the getState in this scenario.
   return async function (dispatch) {
     const response = await jsonPlaceholder.get("/posts");
-    dispatch({ type: "FETCH_POSTS", payload: response });
+    dispatch({ type: "FETCH_POSTS", payload: response.data });
   };
 };
