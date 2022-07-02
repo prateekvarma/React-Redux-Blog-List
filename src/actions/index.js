@@ -9,3 +9,9 @@ export const fetchPosts = () => {
     dispatch({ type: "FETCH_POSTS", payload: response.data });
   };
 };
+
+//Below the ACTION CREATOR function is exactly the same as above, just formatted more ES6 style.
+export const fetchUser = (id) => async (dispatch) => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  dispatch({ type: "FETCH_USER", payload: response.data });
+};
