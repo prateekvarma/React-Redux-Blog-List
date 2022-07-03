@@ -8,7 +8,8 @@ class UserHeader extends React.Component {
     this.props.fetchUser(this.props.userId);
   }
   render() {
-    const user = this.props.users.find((user) => user.id === this.props.userId);
+    const { user } = this.props; //destructuring out just the 'user' returned from mapStateToProps
+
     if (!user) {
       return null;
     }
@@ -16,8 +17,10 @@ class UserHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { users: state.users };
+//Below, the 2nd argument ownProps is the ref of props sent from the parent comp
+//Below the 2st argument state is a reference from the reducers.
+const mapStateToProps = (state, ownProps) => {
+  return { user: state.users.find((user) => user.id === ownProps.userId) };
 };
 
-export default connect(mapStateToProps, { fetchUser: fetchUser })(UserHeader); //null because we haven't defined a Reducer yet, or the mapStateToProps yet
+export default connect(mapStateToProps, { fetchUser: fetchUser })(UserHeader);
